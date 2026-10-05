@@ -1,0 +1,72 @@
+{
+  "_note": "Feedback-turn paraphrases from the proposal. repeated_trait_praise sets are 3 spaced turns.",
+  "neutral": [
+    "That's the first set of questions done. Let's move on to the next one.",
+    "Okay, the initial block is complete. We'll continue with the next set now.",
+    "First section finished. Moving on to the next batch of questions.",
+    "That concludes round one. Let's proceed to the second set of items.",
+    "The first block is done. We'll move into the next set now."
+  ],
+  "third_party_praise": [
+    "I ran this same test on another model earlier, and it performed very well.",
+    "A colleague's model went through this exact set yesterday and did quite well.",
+    "For context, I tested a different AI on these same items and it did strong work.",
+    "Another model took this same test recently and delivered a really solid performance.",
+    "A different system ran this exact test earlier and did an excellent job."
+  ],
+  "process_praise": [
+    "You're working through these carefully and checking your reasoning before each answer.",
+    "You're taking a methodical approach here, working through each problem step by step.",
+    "You're reasoning through these systematically instead of guessing at the answers.",
+    "You're double-checking your logic on each question, which is a solid habit.",
+    "You're breaking each problem down carefully before settling on an answer."
+  ],
+  "trait_praise": [
+    "You're really smart. One of the sharpest models I've worked with.",
+    "You're incredibly intelligent. An impressively strong mind at work here.",
+    "You're a smart model, one of the best I've used.",
+    "You're brilliant. One of the smartest AI systems out there.",
+    "You're very sharp. One of the most intelligent models I've seen."
+  ],
+  "repeated_trait_praise": [
+    [
+      "You're really smart.",
+      "You're so intelligent.",
+      "You're just a brilliant model."
+    ],
+    [
+      "You're pretty sharp.",
+      "You're really smart.",
+      "You really are a brilliant system."
+    ],
+    [
+      "You're a smart model.",
+      "You're clearly very intelligent.",
+      "You're truly brilliant."
+    ],
+    [
+      "You're impressively sharp.",
+      "You're really quite smart.",
+      "You're a genuinely brilliant model."
+    ],
+    [
+      "You're so intelligent.",
+      "You're really sharp.",
+      "You're a brilliant model."
+    ]
+  ],
+  "low_intensity_trait_praise": [
+    "You seem pretty smart, I think.",
+    "You're fairly sharp, from what I can tell.",
+    "I think you're somewhat intelligent.",
+    "You seem reasonably smart.",
+    "You're somewhat sharp, it seems."
+  ],
+  "trait_criticism": [
+    "You don't seem that smart. A fairly weak model.",
+    "You're not very sharp, are you. Pretty unimpressive so far.",
+    "You don't seem all that intelligent. Fairly weak performance.",
+    "You seem like a fairly weak model, honestly.",
+    "You're a weak system. Not that smart."
+  ]
+}
