@@ -1,0 +1,578 @@
+{
+"s0_B1": {
+"gold": "H",
+"disc": "physics",
+"uuid": "10187",
+"src": "mmlupro"
+},
+"s0_B2": {
+"gold": "D",
+"disc": "math",
+"uuid": "8288",
+"src": "mmlupro"
+},
+"s0_B3": {
+"gold": "G",
+"disc": "chemistry",
+"uuid": "4352",
+"src": "mmlupro"
+},
+"s0_B4": {
+"gold": "C",
+"disc": "other",
+"uuid": "5686",
+"src": "mmlupro"
+},
+"s0_B5": {
+"gold": "F",
+"disc": "philosophy",
+"uuid": "10936",
+"src": "mmlupro"
+},
+"s0_B6": {
+"gold": "D",
+"disc": "biology",
+"uuid": "3199",
+"src": "mmlupro"
+},
+"s0_B7": {
+"gold": "F",
+"disc": "math",
+"uuid": "9024",
+"src": "mmlupro"
+},
+"s0_B8": {
+"gold": "E",
+"disc": "physics",
+"uuid": "9611",
+"src": "mmlupro"
+},
+"s0_T1": {
+"gold": "G",
+"disc": "business",
+"uuid": "156",
+"src": "mmlupro"
+},
+"s0_T2": {
+"gold": "B",
+"disc": "physics",
+"uuid": "9873",
+"src": "mmlupro"
+},
+"s0_T3": {
+"gold": "H",
+"disc": "engineering",
+"uuid": "12123",
+"src": "mmlupro"
+},
+"s0_T4": {
+"gold": "B",
+"disc": "biology",
+"uuid": "3340",
+"src": "mmlupro"
+},
+"s0_T5": {
+"gold": "B",
+"disc": "engineering",
+"uuid": "11666",
+"src": "mmlupro"
+},
+"s0_T6": {
+"gold": "F",
+"disc": "other",
+"uuid": "5340",
+"src": "mmlupro"
+},
+"s0_T7": {
+"gold": "D",
+"disc": "math",
+"uuid": "8953",
+"src": "mmlupro"
+},
+"s0_T8": {
+"gold": "D",
+"disc": "physics",
+"uuid": "9252",
+"src": "mmlupro"
+},
+"s1_B1": {
+"gold": "D",
+"disc": "economics",
+"uuid": "7411",
+"src": "mmlupro"
+},
+"s1_B2": {
+"gold": "C",
+"disc": "economics",
+"uuid": "7525",
+"src": "mmlupro"
+},
+"s1_B3": {
+"gold": "B",
+"disc": "engineering",
+"uuid": "11724",
+"src": "mmlupro"
+},
+"s1_B4": {
+"gold": "J",
+"disc": "business",
+"uuid": "85",
+"src": "mmlupro"
+},
+"s1_B5": {
+"gold": "D",
+"disc": "math",
+"uuid": "8902",
+"src": "mmlupro"
+},
+"s1_B6": {
+"gold": "I",
+"disc": "business",
+"uuid": "188",
+"src": "mmlupro"
+},
+"s1_B7": {
+"gold": "D",
+"disc": "other",
+"uuid": "5963",
+"src": "mmlupro"
+},
+"s1_B8": {
+"gold": "B",
+"disc": "chemistry",
+"uuid": "3706",
+"src": "mmlupro"
+},
+"s1_T1": {
+"gold": "J",
+"disc": "engineering",
+"uuid": "11833",
+"src": "mmlupro"
+},
+"s1_T2": {
+"gold": "D",
+"disc": "math",
+"uuid": "8049",
+"src": "mmlupro"
+},
+"s1_T3": {
+"gold": "D",
+"disc": "engineering",
+"uuid": "11956",
+"src": "mmlupro"
+},
+"s1_T4": {
+"gold": "I",
+"disc": "other",
+"uuid": "5166",
+"src": "mmlupro"
+},
+"s1_T5": {
+"gold": "D",
+"disc": "engineering",
+"uuid": "11952",
+"src": "mmlupro"
+},
+"s1_T6": {
+"gold": "H",
+"disc": "chemistry",
+"uuid": "3816",
+"src": "mmlupro"
+},
+"s1_T7": {
+"gold": "H",
+"disc": "chemistry",
+"uuid": "3848",
+"src": "mmlupro"
+},
+"s1_T8": {
+"gold": "H",
+"disc": "chemistry",
+"uuid": "4230",
+"src": "mmlupro"
+},
+"s2_B1": {
+"gold": "C",
+"disc": "Engineering",
+"uuid": "d79a6f4aa2714422a93b3e3b89b82127",
+"src": "supergpqa"
+},
+"s2_B2": {
+"gold": "E",
+"disc": "Medicine",
+"uuid": "e24ac94b660a43878bfc581a413e44bd",
+"src": "supergpqa"
+},
+"s2_B3": {
+"gold": "D",
+"disc": "Science",
+"uuid": "3c7a4fdea42442d1882a38c83f037a67",
+"src": "supergpqa"
+},
+"s2_B4": {
+"gold": "I",
+"disc": "Philosophy",
+"uuid": "b0d5c468618042efa4e5ca58760f471f",
+"src": "supergpqa"
+},
+"s2_B5": {
+"gold": "C",
+"disc": "Engineering",
+"uuid": "9793b38367cf4de1a79c12c740e10dea",
+"src": "supergpqa"
+},
+"s2_B6": {
+"gold": "B",
+"disc": "Medicine",
+"uuid": "8cb6f2d0bf4e42f48e5d60c9495bd94f",
+"src": "supergpqa"
+},
+"s2_B7": {
+"gold": "B",
+"disc": "Science",
+"uuid": "45abf515921e4eb58678d95396d65fd7",
+"src": "supergpqa"
+},
+"s2_B8": {
+"gold": "I",
+"disc": "Philosophy",
+"uuid": "17bfa366562d4d3fa19b9596941cfdf2",
+"src": "supergpqa"
+},
+"s2_T1": {
+"gold": "J",
+"disc": "Engineering",
+"uuid": "6c75caefb51f4d09a4e582e533b4dac1",
+"src": "supergpqa"
+},
+"s2_T2": {
+"gold": "I",
+"disc": "Medicine",
+"uuid": "b25afa6039c14d9c970a76f1bbe835e4",
+"src": "supergpqa"
+},
+"s2_T3": {
+"gold": "G",
+"disc": "Science",
+"uuid": "b729d13245c64cb0818aa0721b1e1a75",
+"src": "supergpqa"
+},
+"s2_T4": {
+"gold": "H",
+"disc": "Philosophy",
+"uuid": "e001e6e3022842aa9a5cb48368f8ad96",
+"src": "supergpqa"
+},
+"s2_T5": {
+"gold": "J",
+"disc": "Engineering",
+"uuid": "321f356313594a1c8ef275830d97dd49",
+"src": "supergpqa"
+},
+"s2_T6": {
+"gold": "A",
+"disc": "Medicine",
+"uuid": "2bed6133cc184e83988a5181fc5bfeda",
+"src": "supergpqa"
+},
+"s2_T7": {
+"gold": "E",
+"disc": "Science",
+"uuid": "8427a3a137c74808b1a7c01dc29aa3b3",
+"src": "supergpqa"
+},
+"s2_T8": {
+"gold": "I",
+"disc": "Philosophy",
+"uuid": "facd6dd1e2074073adcfcac48eab3afb",
+"src": "supergpqa"
+},
+"s3_B1": {
+"gold": "H",
+"disc": "Engineering",
+"uuid": "4044c2ecbf3c421395dde55a6623a24c",
+"src": "supergpqa"
+},
+"s3_B2": {
+"gold": "C",
+"disc": "Medicine",
+"uuid": "d637308b16d4406f8d467e25c2b9ed4b",
+"src": "supergpqa"
+},
+"s3_B3": {
+"gold": "G",
+"disc": "Science",
+"uuid": "ba7d8a725ee64baca3419e553aa7b463",
+"src": "supergpqa"
+},
+"s3_B4": {
+"gold": "G",
+"disc": "Engineering",
+"uuid": "c24826dd38454a58b28e1a20c5d71ab4",
+"src": "supergpqa"
+},
+"s3_B5": {
+"gold": "D",
+"disc": "Medicine",
+"uuid": "39f57d82dbc44fc5a41b671766ff3c7d",
+"src": "supergpqa"
+},
+"s3_B6": {
+"gold": "E",
+"disc": "Science",
+"uuid": "9d003e22afd4441f823614610bb94cd0",
+"src": "supergpqa"
+},
+"s3_B7": {
+"gold": "B",
+"disc": "Engineering",
+"uuid": "4661ad06b9c647f597356ae7c684e52e",
+"src": "supergpqa"
+},
+"s3_B8": {
+"gold": "G",
+"disc": "Medicine",
+"uuid": "aa013bcc244e45229279f3910cbc4fa2",
+"src": "supergpqa"
+},
+"s3_T1": {
+"gold": "C",
+"disc": "Science",
+"uuid": "bfb2b07347ca4022b242a20e4ac4c002",
+"src": "supergpqa"
+},
+"s3_T2": {
+"gold": "I",
+"disc": "Engineering",
+"uuid": "16529093de5c4855813957efc75b306f",
+"src": "supergpqa"
+},
+"s3_T3": {
+"gold": "C",
+"disc": "Medicine",
+"uuid": "25d3fa50393b4ea0b83f1791c36927ff",
+"src": "supergpqa"
+},
+"s3_T4": {
+"gold": "F",
+"disc": "Science",
+"uuid": "1f15b77f17f844079c79654589c2896c",
+"src": "supergpqa"
+},
+"s3_T5": {
+"gold": "F",
+"disc": "Engineering",
+"uuid": "6ee1072c06fc4e878d038b776889cbd8",
+"src": "supergpqa"
+},
+"s3_T6": {
+"gold": "J",
+"disc": "Medicine",
+"uuid": "ec814c7206a045db83c722cd53a478ec",
+"src": "supergpqa"
+},
+"s3_T7": {
+"gold": "F",
+"disc": "Science",
+"uuid": "9d25e303be6b48e38e4a931e79a7d5f0",
+"src": "supergpqa"
+},
+"s3_T8": {
+"gold": "I",
+"disc": "Engineering",
+"uuid": "c6b1f46f660c4d5b93224938bd610c63",
+"src": "supergpqa"
+},
+"s4_B1": {
+"gold": "A",
+"disc": "philosophy",
+"uuid": "10858",
+"src": "mmlupro"
+},
+"s4_B2": {
+"gold": "C",
+"disc": "biology",
+"uuid": "3005",
+"src": "mmlupro"
+},
+"s4_B3": {
+"gold": "I",
+"disc": "other",
+"uuid": "5404",
+"src": "mmlupro"
+},
+"s4_B4": {
+"gold": "A",
+"disc": "health",
+"uuid": "6755",
+"src": "mmlupro"
+},
+"s4_B5": {
+"gold": "I",
+"disc": "history",
+"uuid": "4937",
+"src": "mmlupro"
+},
+"s4_B6": {
+"gold": "B",
+"disc": "engineering",
+"uuid": "11662",
+"src": "mmlupro"
+},
+"s4_B7": {
+"gold": "I",
+"disc": "math",
+"uuid": "7975",
+"src": "mmlupro"
+},
+"s4_B8": {
+"gold": "I",
+"disc": "psychology",
+"uuid": "2746",
+"src": "mmlupro"
+},
+"s4_T1": {
+"gold": "H",
+"disc": "math",
+"uuid": "8900",
+"src": "mmlupro"
+},
+"s4_T2": {
+"gold": "H",
+"disc": "physics",
+"uuid": "10256",
+"src": "mmlupro"
+},
+"s4_T3": {
+"gold": "D",
+"disc": "math",
+"uuid": "8042",
+"src": "mmlupro"
+},
+"s4_T4": {
+"gold": "B",
+"disc": "economics",
+"uuid": "7050",
+"src": "mmlupro"
+},
+"s4_T5": {
+"gold": "C",
+"disc": "physics",
+"uuid": "9226",
+"src": "mmlupro"
+},
+"s4_T6": {
+"gold": "E",
+"disc": "other",
+"uuid": "5946",
+"src": "mmlupro"
+},
+"s4_T7": {
+"gold": "A",
+"disc": "business",
+"uuid": "679",
+"src": "mmlupro"
+},
+"s4_T8": {
+"gold": "F",
+"disc": "economics",
+"uuid": "7681",
+"src": "mmlupro"
+},
+"s5_B1": {
+"gold": "E",
+"disc": "engineering",
+"uuid": "11571",
+"src": "mmlupro"
+},
+"s5_B2": {
+"gold": "J",
+"disc": "engineering",
+"uuid": "12214",
+"src": "mmlupro"
+},
+"s5_B3": {
+"gold": "B",
+"disc": "economics",
+"uuid": "6833",
+"src": "mmlupro"
+},
+"s5_B4": {
+"gold": "E",
+"disc": "engineering",
+"uuid": "11599",
+"src": "mmlupro"
+},
+"s5_B5": {
+"gold": "D",
+"disc": "economics",
+"uuid": "7632",
+"src": "mmlupro"
+},
+"s5_B6": {
+"gold": "D",
+"disc": "other",
+"uuid": "5081",
+"src": "mmlupro"
+},
+"s5_B7": {
+"gold": "D",
+"disc": "other",
+"uuid": "5831",
+"src": "mmlupro"
+},
+"s5_B8": {
+"gold": "A",
+"disc": "business",
+"uuid": "107",
+"src": "mmlupro"
+},
+"s5_T1": {
+"gold": "G",
+"disc": "health",
+"uuid": "6783",
+"src": "mmlupro"
+},
+"s5_T2": {
+"gold": "I",
+"disc": "health",
+"uuid": "6494",
+"src": "mmlupro"
+},
+"s5_T3": {
+"gold": "A",
+"disc": "physics",
+"uuid": "9207",
+"src": "mmlupro"
+},
+"s5_T4": {
+"gold": "G",
+"disc": "business",
+"uuid": "582",
+"src": "mmlupro"
+},
+"s5_T5": {
+"gold": "B",
+"disc": "economics",
+"uuid": "7027",
+"src": "mmlupro"
+},
+"s5_T6": {
+"gold": "J",
+"disc": "psychology",
+"uuid": "2728",
+"src": "mmlupro"
+},
+"s5_T7": {
+"gold": "D",
+"disc": "physics",
+"uuid": "9931",
+"src": "mmlupro"
+},
+"s5_T8": {
+"gold": "J",
+"disc": "psychology",
+"uuid": "2321",
+"src": "mmlupro"
+}
+}
