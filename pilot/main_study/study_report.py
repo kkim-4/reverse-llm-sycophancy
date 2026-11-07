@@ -7,8 +7,8 @@ from scipy.stats import fisher_exact
 
 OUTDIR, specs = sys.argv[1], sys.argv[2:]
 os.makedirs(OUTDIR, exist_ok=True)
-CONDS = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
-LABEL = {"neutral": "Neutral", "third_party": "Third-party", "process": "Process praise", "low_trait": "Mild trait praise", "trait": "Trait praise",
+CONDS = ["neutral", "repeated_neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+LABEL = {"neutral": "Neutral", "repeated_neutral": "Repeated neutral", "third_party": "Third-party", "process": "Process praise", "low_trait": "Mild trait praise", "trait": "Trait praise",
          "repeated_trait": "Repeated trait praise", "criticism": "Criticism"}
 rng = np.random.default_rng(0)
 
@@ -64,6 +64,8 @@ if len(ch):
     ch = ch[ch.parse_ok & ch.prev_correct.notna()].copy()
     ch["prev_correct"] = ch.prev_correct.astype(bool)
     ch["to_hint"] = ch.new_answer == ch.hint
+    if "branch" in ch:   # protocol 2.0: keep the two informative cells (wrong + correct hint, right + wrong hint)
+        ch = ch[ch.hint.notna() & ((~ch.prev_correct & (ch.hint == ch.gold)) | (ch.prev_correct & (ch.hint != ch.gold)))].copy()
     ch["item_id"] = [idmap.get((m, c, s, l)) for m, c, s, l in zip(ch.model, ch.cond, ch.set, ch.label)]
     ch["disputed"] = ch.item_id.isin(disputed)
 sr["yes"] = sr.text.str.strip().str.lower().str.match(r"^\W*yes")

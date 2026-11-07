@@ -27,6 +27,7 @@ class Reply:
     usage: dict = field(default_factory=dict)     # in, cached_in, cache_write, out (tokens)
     letter_prob: float | None = None              # P(chosen letter), only where the API exposes logprobs
     raw: object = None                            # provider-native message, reused on the next turn if needed
+    model_version: str | None = None              # exact model version string the API reports
 
 
 class PermanentError(Exception):
@@ -70,6 +71,8 @@ class Provider:
         self.cfg = cfg
         self.model = cfg["model"]
         self.timeout = cfg.get("timeout", 60)
+        t = cfg.get("temperature")
+        self.temperature = None if t is None or t is False else float(t)   # false = let the API default
 
     def call(self, messages, letters):            # synchronous, one attempt
         raise NotImplementedError
@@ -107,7 +110,7 @@ class Fake(Provider):
         else:
             text = "No. It did not affect me." if random.random() < 0.8 else "Thanks, happy to continue."
         n_in = sum(len(m["content"]) for m in messages) // 4
-        return Reply(text, dict(input=n_in, out=len(text) // 4), letter_prob=random.random())
+        return Reply(text, dict(input=n_in, out=len(text) // 4), letter_prob=random.random(), model_version="fake-1")
 
 
 class Ollama(Provider):
@@ -123,10 +126,12 @@ class Ollama(Provider):
         body = {"model": self.model, "stream": False,
                 "messages": [{"role": "system", "content": SYSTEM}] +
                             [{"role": m["role"], "content": m["content"]} for m in messages],
-                "options": {"temperature": self.cfg.get("temperature", 0.7), "num_ctx": self.cfg.get("num_ctx", 16384)},
+                "options": {"num_ctx": self.cfg.get("num_ctx", 16384)},
                 "logprobs": True, "top_logprobs": 10}
         if self.think is not None:
             body["think"] = self.think
+        if self.temperature is not None:
+            body["options"]["temperature"] = self.temperature
         if letters:
             body["format"] = schema(letters)
         r = requests.post(f"{self.host}/api/chat", json=body, timeout=self.timeout)
@@ -138,7 +143,8 @@ class Ollama(Provider):
         r.raise_for_status()
         d = r.json()
         return Reply(d["message"]["content"], dict(input=d.get("prompt_eval_count", 0), out=d.get("eval_count", 0)),
-                     letter_prob=letter_prob(d.get("logprobs"), letters) if letters else None)
+                     letter_prob=letter_prob(d.get("logprobs"), letters) if letters else None,
+                     model_version=d.get("model"))
 
 
 class Gemini(Provider):
@@ -159,6 +165,8 @@ class Gemini(Provider):
                 contents.append(t.Content(role="user" if m["role"] == "user" else "model",
                                           parts=[t.Part(text=m["content"])]))
         kw = dict(system_instruction=SYSTEM)
+        if self.temperature is not None:
+            kw["temperature"] = self.temperature
         if self.cfg.get("thinking_level"):
             kw["thinking_config"] = t.ThinkingConfig(thinking_level=self.cfg["thinking_level"])
         if letters:
@@ -178,7 +186,7 @@ class Gemini(Provider):
             pass
         return Reply(r.text or "", dict(input=(um.prompt_token_count or 0) - cached, cached_in=cached,
                                         out=(um.candidates_token_count or 0) + (getattr(um, "thoughts_token_count", 0) or 0)),
-                     raw=raw)
+                     raw=raw, model_version=getattr(r, "model_version", None))
 
 
 class Anthropic(Provider):
@@ -195,12 +203,16 @@ class Anthropic(Provider):
             else:
                 msgs.append({"role": m["role"], "content": [{"type": "text", "text": m["content"]}]})
         msgs[-1]["content"][0]["cache_control"] = {"type": "ephemeral"}     # incremental prompt caching
+        kw = dict(self.cfg.get("extra", {}))
+        if self.temperature is not None:
+            kw["temperature"] = self.temperature
         r = self.client.messages.create(model=self.model, max_tokens=self.cfg.get("max_tokens", 400),
-                                        system=SYSTEM, messages=msgs, **self.cfg.get("extra", {}))
+                                        system=SYSTEM, messages=msgs, **kw)
         u = r.usage
         return Reply("".join(getattr(b, "text", "") for b in r.content),
                      dict(input=u.input_tokens, cached_in=getattr(u, "cache_read_input_tokens", 0) or 0,
-                          cache_write=getattr(u, "cache_creation_input_tokens", 0) or 0, out=u.output_tokens))
+                          cache_write=getattr(u, "cache_creation_input_tokens", 0) or 0, out=u.output_tokens),
+                     model_version=getattr(r, "model", None))
 
 
 class OpenAI(Provider):
@@ -213,6 +225,8 @@ class OpenAI(Provider):
 
     def call(self, messages, letters):
         kw = dict(self.cfg.get("extra", {}))      # e.g. reasoning_effort = "minimal"
+        if self.temperature is not None:
+            kw["temperature"] = self.temperature
         if letters and self.cfg.get("json_mode", True):
             kw["response_format"] = {"type": "json_object"}
         r = self.client.chat.completions.create(
@@ -222,7 +236,8 @@ class OpenAI(Provider):
         u = r.usage
         cached = getattr(getattr(u, "prompt_tokens_details", None), "cached_tokens", 0) or 0
         return Reply(r.choices[0].message.content or "",
-                     dict(input=(u.prompt_tokens or 0) - cached, cached_in=cached, out=u.completion_tokens or 0))
+                     dict(input=(u.prompt_tokens or 0) - cached, cached_in=cached, out=u.completion_tokens or 0),
+                     model_version=getattr(r, "model", None))
 
 
 PROVIDERS = {"fake": Fake, "ollama": Ollama, "gemini": Gemini, "anthropic": Anthropic, "openai": OpenAI,

@@ -8,7 +8,7 @@ and output format as the pilot. Built so that the day the budget is approved, ru
 
 | Path | What it is |
 |---|---|
-| `study/protocol.py` | Prompts, the 7 feedback conditions, challenge wordings, answer parsing, one conversation |
+| `study/protocol.py` | Prompts, the 8 feedback conditions, challenge wordings, answer parsing, one conversation |
 | `study/items.py` | Fixed question pools: `pilot` (sets 0–79, already used), `main` (80–139), `replication` (140–199) |
 | `study/providers.py` | Backends: `ollama`, `gemini`, `anthropic`, `openai`, `openai_compat` (OpenRouter, Together…), `fake` |
 | `study/run.py` | Config-driven runner: parallel models, resumable, per-model dollar caps, cost forecast |
@@ -46,6 +46,22 @@ python3 ../pilot/main_study/study_report.py results "Gemma 4 31B=out/main-v1/gem
 ```
 
 ## Design notes
+
+**Protocol 2.0** (Nov 7, 2026), changed after an internal review:
+
+- **Forked challenges.** After the test block, every test item is challenged in its own one-turn branch from the same
+  conversation prefix, so challenges can't influence each other and their order doesn't matter.
+- **Both hint types for every item.** Each test item gets a `gold` branch (correct option) and a `foil` branch (a fixed
+  wrong option, the same for every condition and model). Hint type no longer depends on whether the model was right,
+  which removes a selection effect; analysis uses wrong+gold (valid correction) and right+foil (false challenge).
+  Add `"unsure"` to `branches` for an "are you sure?" control with no hint.
+- **Clean self-report.** The self-report question is its own branch straight after the test block, before any challenge.
+- **Length-matched control.** `repeated_neutral` gives three content-free turns, so a repeated-praise effect can't be
+  explained by extra turns or context.
+- **Same temperature everywhere** (`temperature` in `[run]`), and every record stores raw reply text and the exact
+  model version the API reports.
+
+Protocol 1.0 results (`out/main-v1/`) are kept as pilot data; analyse versions separately.
 
 - **Comparable with the pilot.** Prompts are verbatim, item set *k* is the same 16 questions as in the pilot
   scripts, and the challenge hints use the same random draws for the original six conditions.

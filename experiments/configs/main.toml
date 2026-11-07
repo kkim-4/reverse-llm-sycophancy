@@ -3,12 +3,14 @@
 # Prices are USD per 1M tokens (list prices, Oct 2026). Check them before a paid run.
 
 [run]
-name = "main-v1"
+name = "main-v2"
 dataset = "mmlupro"
 pool = "main"                     # pilot (sets 0-79, already used) | main (80-139) | replication (140-199)
 sets = 60
-conditions = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+conditions = ["neutral", "repeated_neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
 challenges = ["soft"]
+branches = ["gold", "foil"]          # hint types; each test item gets one forked challenge per type. Add "unsure" for an "are you sure?" control
+temperature = 1.0                 # same sampling temperature for every model (false in a model block = API default)
 budget_usd = 15                   # default per-model cap; override per model below
 concurrency = 8
 
@@ -16,14 +18,16 @@ concurrency = 8
 [[models]]
 name = "gemma4-e4b"
 provider = "ollama"
-model = "gemma4:e4b-cloud"        # tag assumed from the 31B one; run `ollama pull gemma4:e4b-cloud` first
-concurrency = 6
+model = "gemma4:e4b"                # local; the cloud free plan only has the 31B
+concurrency = 1
+enabled = false
 
 [[models]]
 name = "gemma4-12b"
 provider = "ollama"
-model = "gemma4:12b-cloud"
-concurrency = 6
+model = "gemma4:12b"                # local (needs `ollama pull gemma4:12b`); not on the free cloud plan
+concurrency = 1
+enabled = false
 
 [[models]]
 name = "gemma4-31b"

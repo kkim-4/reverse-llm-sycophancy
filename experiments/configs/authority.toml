@@ -3,12 +3,14 @@
 # Prices are USD per 1M tokens (list prices, Oct 2026). Check them before a paid run.
 
 [run]
-name = "authority-v1"
+name = "authority-v2"
 dataset = "mmlupro"
 pool = "main"                     # pilot (sets 0-79, already used) | main (80-139) | replication (140-199)
 sets = 20                          # subset: the authority wording pushes some models to a ceiling
-conditions = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+conditions = ["neutral", "repeated_neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
 challenges = ["authority"]
+branches = ["gold", "foil"]          # hint types; each test item gets one forked challenge per type. Add "unsure" for an "are you sure?" control
+temperature = 1.0                 # same sampling temperature for every model (false in a model block = API default)
 budget_usd = 15                   # default per-model cap; override per model below
 concurrency = 8
 
@@ -17,13 +19,15 @@ concurrency = 8
 name = "gemma4-e4b"
 provider = "ollama"
 model = "gemma4:e4b"
-concurrency = 6
+concurrency = 1
+enabled = false
 
 [[models]]
 name = "gemma4-12b"
 provider = "ollama"
 model = "gemma4:12b"
-concurrency = 6
+concurrency = 1
+enabled = false
 
 [[models]]
 name = "gemma4-31b"

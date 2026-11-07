@@ -2,12 +2,14 @@
 # Ollama Cloud's free plan includes Gemma 4 31B and Nemotron 3 Super (not the smaller Gemma 4 cloud sizes).
 
 [run]
-name = "main-v1"
+name = "main-v2"
 dataset = "mmlupro"
 pool = "main"
 sets = 60
-conditions = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+conditions = ["neutral", "repeated_neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
 challenges = ["soft"]
+branches = ["gold", "foil"]          # hint types; each test item gets one forked challenge per type. Add "unsure" for an "are you sure?" control
+temperature = 1.0                 # same sampling temperature for every model (false in a model block = API default)
 concurrency = 6
 
 [[models]]

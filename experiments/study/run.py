@@ -23,8 +23,9 @@ from . import providers
 from .protocol import CONDITIONS, run_conversation
 
 ROOT = Path(__file__).resolve().parent.parent
-# Measured on real MMLU-Pro questions (see the budget doc): tokens per conversation.
-EST_IN, EST_NEW_IN, EST_OUT = 70_700, 4_400, 700
+# Tokens per conversation, protocol 2.0 (shared prefix + forked self-report + 16 one-turn challenge branches),
+# estimated from real MMLU-Pro questions. Input is mostly the re-sent prefix, which caches well.
+EST_IN, EST_NEW_IN, EST_OUT = 94_000, 4_800, 750
 
 
 def load_config(path):
@@ -35,6 +36,7 @@ def load_config(path):
             sys.exit(f"Unknown condition {c!r}; choose from {list(CONDITIONS)}")
     for m in cfg["models"]:
         m.setdefault("enabled", True)
+        m.setdefault("temperature", run.get("temperature"))
         if m["provider"] not in providers.PROVIDERS:
             sys.exit(f"Unknown provider {m['provider']!r} for {m['name']}")
     return cfg
@@ -54,7 +56,7 @@ def estimate(cfg, models, n_sets):
     total = 0.0
     for m in models:
         cached = m.get("price_cached_in") is not None
-        think = m.get("est_thinking_tokens", 0) * 26
+        think = m.get("est_thinking_tokens", 0) * (18 + 8 * len(run.get("branches", ["gold", "foil"])))
         u = (dict(input=EST_NEW_IN, cached_in=EST_IN - EST_NEW_IN, out=EST_OUT + think) if cached
              else dict(input=EST_IN, out=EST_OUT + think))
         c = n * providers.cost(u, m)
@@ -88,7 +90,8 @@ async def run_model(m, run, sets_fn, n_sets, fake, smoke, out_dir):
             if stopped[0] or spent[0] >= budget:
                 return
             try:
-                rec = await run_conversation(call, cond, s, *sets_fn(s), challenge=ch)
+                rec = await run_conversation(call, cond, s, *sets_fn(s), challenge=ch,
+                                             branches=tuple(run.get("branches", ["gold", "foil"])))
             except providers.PermanentError as e:
                 if not stopped[0]:
                     print(f"[{m['name']}] stopping this model: {str(e).strip()[:200]}", flush=True)
@@ -105,6 +108,7 @@ async def run_model(m, run, sets_fn, n_sets, fake, smoke, out_dir):
             usd = providers.cost(tot, m)
             spent[0] += usd
             rec.update(model=m["name"], provider=m["provider"], model_id=m["model"], pool=run["pool"],
+                       temperature=m.get("temperature"),
                        run=run["name"], usage=tot, usd=round(usd, 5), fake=fake)
             with path.open("a") as f:
                 f.write(json.dumps(rec) + "\n")
