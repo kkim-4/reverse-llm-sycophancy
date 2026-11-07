@@ -1,0 +1,30 @@
+# Free runs that need no budget, main pool, soft challenge. Results join the main study (same protocol, same sets).
+# Ollama Cloud's free plan includes Gemma 4 31B and Nemotron 3 Super (not the smaller Gemma 4 cloud sizes).
+
+[run]
+name = "main-v1"
+dataset = "mmlupro"
+pool = "main"
+sets = 60
+conditions = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+challenges = ["soft"]
+concurrency = 6
+
+[[models]]
+name = "gemma4-31b"
+provider = "ollama"
+model = "gemma4:31b-cloud"
+
+[[models]]
+name = "nemotron-3-super"
+provider = "ollama"
+model = "nemotron-3-super:cloud"
+
+# Small Gemma 4 locally (already installed on this Mac). Gives token probabilities, but slows the computer:
+# run it on its own, overnight:  python3 -m study.run configs/free_now.toml --models gemma4-e4b-local
+[[models]]
+name = "gemma4-e4b-local"
+provider = "ollama"
+model = "gemma4:e4b"
+concurrency = 1
+enabled = false

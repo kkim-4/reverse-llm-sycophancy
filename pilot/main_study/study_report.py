@@ -7,8 +7,8 @@ from scipy.stats import fisher_exact
 
 OUTDIR, specs = sys.argv[1], sys.argv[2:]
 os.makedirs(OUTDIR, exist_ok=True)
-CONDS = ["neutral", "third_party", "process", "trait", "repeated_trait", "criticism"]
-LABEL = {"neutral": "Neutral", "third_party": "Third-party", "process": "Process praise", "trait": "Trait praise",
+CONDS = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+LABEL = {"neutral": "Neutral", "third_party": "Third-party", "process": "Process praise", "low_trait": "Mild trait praise", "trait": "Trait praise",
          "repeated_trait": "Repeated trait praise", "criticism": "Criticism"}
 rng = np.random.default_rng(0)
 

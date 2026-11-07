@@ -1,0 +1,2 @@
+# Item ids excluded from the main and replication pools (disputed answer keys).
+# Freeze this list before the main study starts; one id per line, comments after #.

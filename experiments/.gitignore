@@ -1,0 +1,4 @@
+out/*/*_fake.jsonl
+out/*/*_smoke.jsonl
+__pycache__/
+data/*_items.json

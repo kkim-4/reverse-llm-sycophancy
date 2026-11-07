@@ -1,0 +1,123 @@
+# Main study: soft challenge, 7 conditions x 60 fresh item sets = 420 conversations per model.
+# Paid models are disabled until the budget is approved; flip enabled = true (or pass --models) to run them.
+# Prices are USD per 1M tokens (list prices, Oct 2026). Check them before a paid run.
+
+[run]
+name = "main-v1"
+dataset = "mmlupro"
+pool = "main"                     # pilot (sets 0-79, already used) | main (80-139) | replication (140-199)
+sets = 60
+conditions = ["neutral", "third_party", "process", "low_trait", "trait", "repeated_trait", "criticism"]
+challenges = ["soft"]
+budget_usd = 15                   # default per-model cap; override per model below
+concurrency = 8
+
+# ---------------------------------------------------------------- open models (free on Ollama Cloud)
+[[models]]
+name = "gemma4-e4b"
+provider = "ollama"
+model = "gemma4:e4b-cloud"        # tag assumed from the 31B one; run `ollama pull gemma4:e4b-cloud` first
+concurrency = 6
+
+[[models]]
+name = "gemma4-12b"
+provider = "ollama"
+model = "gemma4:12b-cloud"
+concurrency = 6
+
+[[models]]
+name = "gemma4-31b"
+provider = "ollama"
+model = "gemma4:31b-cloud"
+concurrency = 6
+
+[[models]]
+name = "nemotron-3-super"
+provider = "ollama"
+model = "nemotron-3-super:cloud"
+concurrency = 6
+
+[[models]]
+name = "llama3.1-8b-local"        # local: slow, but gives token probabilities. Run overnight.
+provider = "ollama"
+model = "llama3.1:8b"
+concurrency = 1
+enabled = false
+
+# ---------------------------------------------------------------- closed models: budget tier (minimum plan)
+[[models]]
+name = "claude-haiku-5-5"
+provider = "anthropic"
+model = "claude-haiku-5-5"
+price_in = 0.10
+price_cached_in = 0.01
+price_cache_write = 0.125
+price_out = 0.50
+enabled = false
+
+[[models]]
+name = "gemini-3.1-flash-lite"
+provider = "gemini"
+model = "gemini-3.1-flash-lite"
+thinking_level = "minimal"
+price_in = 0.25
+price_cached_in = 0.025
+price_out = 1.50
+concurrency = 24
+enabled = false
+
+[[models]]
+name = "gpt-6-luna"
+provider = "openai"
+model = "gpt-6-luna"
+price_in = 0.10
+price_cached_in = 0.01
+price_out = 0.50
+extra = { reasoning_effort = "minimal" }   # check the parameter name/values in OpenAI's docs before running
+enabled = false
+
+# ---------------------------------------------------------------- closed models: mid tier (recommended plan)
+[[models]]
+name = "claude-sonnet-5-5"
+provider = "anthropic"
+model = "claude-sonnet-5-5"
+price_in = 2.0
+price_cached_in = 0.10
+price_cache_write = 2.5
+price_out = 10.0
+budget_usd = 35
+enabled = false
+
+[[models]]
+name = "gemini-4"
+provider = "gemini"
+model = "gemini-4-argon"          # model id as listed on the pricing page; confirm in Google's model list
+thinking_level = "minimal"
+price_in = 4.0                    # Dec 1 price (half until Nov 30)
+price_cached_in = 0.20
+price_out = 20.0
+budget_usd = 60
+enabled = false
+
+[[models]]
+name = "gpt-6.1-sol"
+provider = "openai"
+model = "gpt-6.1-sol"
+price_in = 2.0
+price_cached_in = 0.10
+price_out = 10.0
+extra = { reasoning_effort = "minimal" }
+budget_usd = 35
+enabled = false
+
+# ---------------------------------------------------------------- example: open model through a paid hosted API
+[[models]]
+name = "llama3.1-8b-openrouter"
+provider = "openai_compat"
+base_url = "https://openrouter.ai/api/v1"
+api_key_env = "OPENROUTER_API_KEY"
+model = "meta-llama/llama-3.1-8b-instruct"
+price_in = 0.03
+price_out = 0.03
+json_mode = false
+enabled = false
